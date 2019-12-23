@@ -1,0 +1,66 @@
+# seeMatches: A function to view the matched observations of a "matchit" class object with "subclass" values.
+# Takes a "matchit" object or a list of them (e.g. after multiple imputation and matching).
+# Returns either a vector of strings listing all matched IDs or a random sample of them.
+
+seeMatches <- function(x, ID, all = TRUE, n = NULL){
+
+  # x: a data frame or list of data frames produced by matchit().
+  # ID: a character string naming the ID column.
+  # all: if TRUE, returns all matches. Otherwise, n must be specified.
+  # n: number of matches to sample if all = FALSE.
+  
+  require(MatchIt); require(Amelia); require(dplyr)  
+  if(class(x) != "list") x <- list(x)
+  dfs <- list(); matches <- list()
+  
+  for(i in seq_along(x)){
+  		dfs[[i]] <- data.frame(x[[i]]$model$data, subclass = x[[i]]$subclass)
+  		matches[[i]] <- aggregate(dfs[[i]][,ID], by = list(dfs[[i]]$subclass),
+  							             FUN = function(x){paste0(x, sep = "")})[,2] %>%
+  							      lapply(sort)
+  		dfs[[i]] <- NULL
+ 		}
+ 		
+  matches <- unlist(matches, recursive = FALSE) %>% 
+  				   unique %>% 
+  				   lapply(function(z) paste0(z, collapse = " & ")) %>%
+			  	   unlist %>% 
+			  	   sort
+				
+  if(all) matches <- matches else matches <- sample(matches, n)
+  
+  invisible(matches)
+  print(matches)
+  }
+  
+# Example using the LeLonde data set in the "cem" package.
+
+set.seed(123)
+library(MatchIt); library(cem); library(Amelia); library(randomNames); library(dplyr)
+
+data(LeLonde)
+
+LeLonde <- LeLonde %>% mutate(name = randomNames::randomNames(n = nrow(LeLonde), 
+                               name.order = "first.last", name.sep = " "))
+                               
+imputedData.list <- amelia(LeLonde, m = 2, idvars = "name", 
+                           noms = c("black","hispanic","treated","married",
+                           "nodegree", "u74","u75","q1"))$imputations
+
+formula <- as.formula("treated ~ black+hispanic+married+nodegree+age+education+u74+u75+q1")
+
+# List of matchit objects from the multiply imputed data frames.
+matchedData.list <- list()
+for(i in seq_along(imputedData.list)){
+	matchedData.list[[i]] <- matchit(formula = formula, 
+									 data = imputedData.list[[i]], 
+									 method = "cem")
+	}
+
+# Single matchit object using listwise deletion.
+matchedData <- matchit(formula = formula, data = LeLonde[complete.cases(LeLonde),], method = "cem")
+
+# Use seeMatches on both objects.
+seeMatches(x = matchedData, ID = "name", all = F, n = 20)
+seeMatches(x = matchedData.list, ID = "name", all = F, n = 25)
+seeMatches(x = matchedData.list, ID = "name", all = T)
