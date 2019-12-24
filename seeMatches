@@ -1,6 +1,6 @@
 # seeMatches: A function to view the matched observations of a "matchit" class object with "subclass" values.
-# Takes a "matchit" object or a list of them (e.g. after multiple imputation and matching).
-# Returns either a vector of strings listing all matched IDs or a random sample of them.
+# 	Takes a "matchit" object or a list of them (e.g. after multiple imputation and matching).
+# 	Returns either a vector of strings listing all matched IDs or a random sample of them.
 
 seeMatches <- function(x, ID, all = TRUE, n = NULL){
   # x: a data frame or list of data frames produced by matchit().
