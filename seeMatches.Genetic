@@ -73,3 +73,8 @@ seeMatches.Genetic(matchedData.list, "name", all = F, n = 20)
 #[15] "Cody Reed & Husniyya el-Popal & Raakaan el-Jabara & Saaliha el-Sharaf" "Brittany Gallegos & Kevin Lor"                                        
 #[17] "Craig Wells Jr & Roger Lujan-Peinado"                                  "Brandon Alfandi & Darian Gonzales"                                    
 #[19] "Isaiah Cradle & Marcos Saldana Spiegle"                                "Khin Chen & Marjory Smithee"                                          
+
+# References
+# Jasjeet S. Sekhon. 2011. ``Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The Matching package for R.'' Journal of Statistical Software, 42(7): 1-52. 
+# Daniel Ho, Kosuke Imai, Gary King, and Elizabeth Stuart (2007). Matching as Nonparametric Preprocessing for Reducing Model Dependence in Parametric Causal Inference. Political Analysis 15(3): 199-236. http://gking.harvard.edu/files/abs/matchp-abs.shtml
+# Honaker, J., King, G., Blackwell, M. (2011). Amelia II: A Program for Missing Data. Journal of Statistical Software, 45(7), 1–47. URL http://www.jstatsoft.org/v45/i07/.
