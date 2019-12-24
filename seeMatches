@@ -58,6 +58,29 @@ for(i in seq_along(imputedData.list)){
 matchedData <- matchit(formula = theta, data = LeLonde[complete.cases(LeLonde),], method = "cem")
 
 # Use seeMatches with both kinds of lists.
-seeMatches(x = matchedData, ID = "name", all = F, n = 20) # Sample size 20.
-seeMatches(x = matchedData.list, ID = "name", all = F, n = 25) # Sample size 25.
-seeMatches(x = matchedData.list, ID = "name", all = T) # All matches.
+seeMatches(x = matchedData.list, ID = "name", all = F, n = 25) # Sample size 25 using imputed data.
+seeMatches(x = matchedData.list, ID = "name", all = T) # All matches using imputed data.
+seeMatches(x = matchedData, ID = "name", all = F, n = 20) # Sample size 20 using unimputed data.
+
+# Output from last run.
+# [1] "Chelsea Ducklow & Nazeeha al-Bacho"                                                                                                              
+# [2] "Millicent Fleming & Ramziyya el-Pour"                                                                                                            
+# [3] "Jonathan Soto & Katherine Bia Jr"                                                                                                                
+# [4] "Colette Troxel & Jordan Rozman & Katarina Borda Witten & Vinhcynt Rupley"                                                                        
+# [5] "Garrison Smith & Suhaila al-Basher"                                                                                                              
+# [6] "Aayid al-Mahmood & Brianna Celestino & Marlenny Vogel & Nico Burnsed"                                                                            
+# [7] "Enrique Pinon & Shaafia al-Nasr"                                                                                                                 
+# [8] "Kifaaya al-Fayad & Oshanee Lovald"                                                                                                               
+# [9] "Haleema al-Salloum & Jayden Snowhawk"                                                                                                            
+#[10] "Christopher Gonzales & Joshua Martinez & Mary Medlock"                                                                                           
+#[11] "Destin Simmons & Robert Morquecho & Ya'qoob al-Khawaja"                                                                                          
+#[12] "Abraham Dejesus Morales & Randy Kenkeo & Rayyaan al-Baten & Samantha Washington"                                                                 
+#[13] "Kendall Shibre & Steven Vigil"                                                                                                                   
+#[14] "Alyssa Romero & Kevyn Card & Peter Tran"                                                                                                         
+#[15] "Angel Le & Ja'Won Glynn & Julio Perez & Kaarim al-Quadri & Loan Mai Bille & Mashal al-Awan & Samuel Bird & Sonja Puhalovic"                      
+#[16] "Aiisha Fay & Ariana Smith & Chanratana Lou & Denisse Juarez & Elle-Han Kijprachakorn & Mary Brabson & Wafaaa el-Younis & William Nguyen"         
+#[17] "Flint Tutag & Monica Burd"                                                                                                                       
+#[18] "Esai Martinez & Olivia Giron Lovato"                                                                                                             
+#[19] "Jasmine Roberts & Serguei Smith & Shureetha Mendoza-Lagunas"                                                                                     
+#[20] "Ameena el-Rahaim & Annabelle Borom & Brian Alvarez & Carolyn Smith & Cecilia Herrera & Hop Vo & James Flyinghawk & Vonasherell Jones & Yal Duong"
+
