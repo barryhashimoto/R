@@ -34,7 +34,7 @@ seeMatches <- function(x, ID, all = TRUE, n = NULL){
   print(matches)
   }
   
-# Example using the LeLonde data set in the "cem" package. Impute random names as ID variables.
+# Example: impute, match, and see matches in the "cem" package's LeLonde data. Set unit IDs to random names.
 set.seed(123); library(MatchIt); library(cem); library(Amelia); library(randomNames); library(dplyr)
 
 data(LeLonde); LeLonde <- LeLonde %>% mutate(name = randomNames::randomNames(n = nrow(LeLonde), 
@@ -43,7 +43,6 @@ data(LeLonde); LeLonde <- LeLonde %>% mutate(name = randomNames::randomNames(n =
 imputedData.list <- amelia(LeLonde, m = 20, p2s = F, idvars = "name", 
 				noms = c("black","hispanic","treated","married",
 				"nodegree", "u74","u75","q1"))$imputations
-
 
 # Make a list of matchit objects from the multiply imputed data frames.
 matchedData.list <- list()
