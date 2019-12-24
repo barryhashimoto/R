@@ -1,6 +1,8 @@
 # seeMatches.CEM: A function to view coarsened exact matched observations of a "matchit" class object with "subclass" values.
-# 	Takes a "matchit" object after CEM or a list of them (e.g. after multiple imputation and matching).
+# 	Takes a "matchit" object after coarsened exact matching, or a list of such objects (e.g. after multiple imputation and matching).
 # 	Returns either a vector of strings listing all matched IDs or a random sample of them.
+#   	Removes duplicate matches across imputed data sets.
+
 
 seeMatches.CEM <- function(x, ID, all = TRUE, n = NULL){
   # x: a data frame or list of data frames produced by matchit().
