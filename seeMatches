@@ -29,31 +29,30 @@ seeMatches <- function(x, ID, all = TRUE, n = NULL){
   print(matches)
   }
   
-# Example using the LeLonde data set in the "cem" package.
-
+# Example using the LeLonde data set in the "cem" package. Impute random names as ID variables.
 set.seed(123)
-
 library(MatchIt); library(cem); library(Amelia); library(randomNames); library(dplyr)
 
 data(LeLonde)
-
 LeLonde <- LeLonde %>% mutate(name = randomNames::randomNames(n = nrow(LeLonde), 
-                               name.order = "first.last", name.sep = " "))
-                               
+                               name.order = "first.last", name.sep = " "))                           
 imputedData.list <- amelia(LeLonde, m = 20, p2s = F, idvars = "name", 
                            noms = c("black","hispanic","treated","married",
                            "nodegree", "u74","u75","q1"))$imputations
 
-formula <- as.formula("treated ~ black+hispanic+married+nodegree+age+education+u74+u75+q1")
 
 # Make a list of matchit objects from the multiply imputed data frames.
 matchedData.list <- list()
-for(i in seq_along(imputedData.list))matchedData.list[[i]] <- matchit(formula = formula, data = imputedData.list[[i]], method = "cem")
+formula <- as.formula("treated ~ black+hispanic+married+nodegree+age+education+u74+u75+q1")
+
+for(i in seq_along(imputedData.list)) matchedData.list[[i]] <- matchit(formula = formula, 
+									data = imputedData.list[[i]], 
+									method = "cem")
 
 # Make a single matchit object, using listwise deletion for missing values.
 matchedData <- matchit(formula = formula, data = LeLonde[complete.cases(LeLonde),], method = "cem")
 
 # Use seeMatches with both kinds of lists.
-seeMatches(x = matchedData, ID = "name", all = F, n = 20)
-seeMatches(x = matchedData.list, ID = "name", all = F, n = 25)
-seeMatches(x = matchedData.list, ID = "name", all = T)
+seeMatches(x = matchedData, ID = "name", all = F, n = 20) # Sample size 20.
+seeMatches(x = matchedData.list, ID = "name", all = F, n = 25) # Sample size 25.
+seeMatches(x = matchedData.list, ID = "name", all = T) # All matches.
