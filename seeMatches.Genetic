@@ -35,7 +35,7 @@ seeMatches.Genetic <- function(x, ID, all = TRUE, n = NULL){
   }
 
 # Example: impute, match, and see matches in the "cem" package's LeLonde data. Set unit IDs to random names.
-set.seed(123); library(MatchIt); library(rgenoud); library(Amelia); library(randomNames); library(dplyr)
+set.seed(123); library(MatchIt); library(cem); library(rgenoud); library(Amelia); library(randomNames); library(dplyr)
 
 data(LeLonde)
 LeLonde <- LeLonde %>% mutate(name = randomNames::randomNames(n = nrow(LeLonde), 
