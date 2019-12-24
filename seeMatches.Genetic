@@ -1,4 +1,4 @@
-# seeMatches.Genetic: A function to view observations matched by genetic matching in a "matchit" class object.
+# seeMatches.Genetic: An R function to view matched observations in a "matchit" class object after genetic matching.
 # 	Takes a "matchit" object where method = "genetic" or a list of them (e.g. after multiple imputation and matching).
 # 	Returns either a vector of strings listing all matched IDs or a random sample of them.
 #   	Removes duplicate matches across imputed data sets.
