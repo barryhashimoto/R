@@ -52,17 +52,13 @@ imputedData.list <- amelia(LeLonde, m = 2, p2s = F, idvars = "name",
                            "nodegree", "u74","u75","q1"))$imputations
 
 matchedData.list <- list()
-for(i in seq_along(imputedData.list)) matchedData.list[[i]] <- matchit(formula = theta, 
-                                                                data = imputedData.list[[i]], 
-                                                                method = "genetic")
-
+for(i in seq_along(imputedData.list)) matchedData.list[[i]] <- matchit(formula = theta, data = imputedData.list[[i]], method = "genetic")
 
 # Use seeMatches with both kinds of lists.
 seeMatches.Genetic(matchedData, "name", all = F, n = 20)
 seeMatches.Genetic(matchedData.list, "name", all = F, n = 20)
 
 # Output from last run.
-
 # [1] "Andrew Prieto Perez & Charisha Parson"                                 "Alexandria Trujillo & Joseph Garcia"                                  
 # [3] "Albert Rocha & Naqaa al-Zaman & Shaahira al-Youssef"                   "Jack Snow & Jordan Gibson"                                            
 # [5] "Inaaya al-Sulaiman & Zhahit Balderrama"                                "Jasmine Ellington & Joshua Watkins"                                   
