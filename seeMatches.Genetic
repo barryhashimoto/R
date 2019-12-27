@@ -22,9 +22,9 @@ seeMatches.Genetic <- function(x, ID, all = TRUE, n = NULL){
 	matchMat <- cbind(rownames(MM), MM) %>% as.data.frame(stringsAsFactors = F)
 	matchMat[] <- nameKey$V2[match(unlist(matchMat), nameKey$V1)]
 	matches[[i]] <- split(matchMat, f = seq(nrow(matchMat))) %>% 
-					lapply(function(z) z[,!is.na(z)]) %>% lapply(sort) %>%
-					lapply(function(z) paste(z, collapse = " & ")) %>%
-					unlist(use.names = F) %>% sort
+				lapply(function(z) z[,!is.na(z)]) %>% lapply(sort) %>%
+				lapply(function(z) paste(z, collapse = " & ")) %>%
+				unlist(use.names = F) %>% sort
 	}
   
   matches <- unlist(matches) %>% unique %>% sort
@@ -38,8 +38,7 @@ seeMatches.Genetic <- function(x, ID, all = TRUE, n = NULL){
 set.seed(123); library(MatchIt); library(cem); library(rgenoud); library(Amelia); library(randomNames); library(dplyr)
 
 data(LeLonde)
-LeLonde <- LeLonde %>% mutate(name = randomNames::randomNames(n = nrow(LeLonde), 
-                               name.order = "first.last", name.sep = " "))  
+LeLonde <- LeLonde %>% mutate(name = randomNames::randomNames(n = nrow(LeLonde), name.order = "first.last", name.sep = " "))  
 
 # Make a single matchit object, using listwise deletion for missing values.
 theta <- as.formula("treated ~ black+hispanic+married+nodegree+age+education+u74+u75+q1")
