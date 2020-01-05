@@ -16,20 +16,16 @@ seeMatches.CEM <- function(x, ID, all = TRUE, n = NULL){
   dfs <- list(); matches <- list()
   
   for(i in seq_along(x)){
-  		dfs[[i]] <- data.frame(x[[i]]$model$data, 
-			subclass = x[[i]]$subclass)
-  		matches[[i]] <- aggregate(dfs[[i]][,ID], 
-			by = list(dfs[[i]]$subclass),
+  		dfs[[i]] <- data.frame(x[[i]]$model$data, subclass = x[[i]]$subclass)
+  		matches[[i]] <- aggregate(dfs[[i]][,ID], by = list(dfs[[i]]$subclass),
   			FUN = function(x){paste0(x, sep = "")})[,2] %>%
   			lapply(sort)
   		dfs[[i]] <- NULL
  		}
  		
   matches <- unlist(matches, recursive = FALSE) %>% 
-  		unique %>% 
-  		lapply(function(z) paste0(z, collapse = " & ")) %>%
-		unlist %>% 
-		sort
+  		unique %>% lapply(function(z) paste0(z, collapse = " & ")) %>%
+		unlist %>% sort
 				   
   if(all) matches <- matches else matches <- sample(matches, n)
   print(matches)
