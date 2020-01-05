@@ -30,8 +30,7 @@ seeMatches.Genetic <- function(x, ID, all = TRUE, n = NULL){
   matches <- unlist(matches) %>% unique %>% sort
 
   if(all) matches <- matches else matches <- sample(matches, n)
-  invisible(matches); print(matches)
-  matchMat <- i <- NULL
+  print(matches)
   }
 
 # Example: impute, match, and see matches in the "cem" package's LeLonde data. Set unit IDs to random names.
