@@ -32,8 +32,7 @@ seeMatches.CEM <- function(x, ID, all = TRUE, n = NULL){
 		sort
 				   
   if(all) matches <- matches else matches <- sample(matches, n)
-  invisible(matches); print(matches)
-  i <- NULL
+  print(matches)
   }
   
 # Example: impute, match, and see matches in the "cem" package's LeLonde data. Set unit IDs to random names.
