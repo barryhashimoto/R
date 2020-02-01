@@ -1,4 +1,4 @@
-# Fix for bash wget warnings for Apple machines purchased outside the United States. The warnings slow down script execution and ocassionaly result in failed empty downloads.
+# Fix for warnings after running wget at the Terminal on Apple machines purchased outside the United States. The warnings slow down script execution and ocassionaly result in failed, empty downloads.
 
 # This is a known issue for non-US Apple machines using a US locale.
 
