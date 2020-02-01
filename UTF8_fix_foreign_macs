@@ -7,3 +7,13 @@
 echo "export LC_ALL=en_US.UTF-8" >> ~/.bash_profile && source ~/.bash_profile
 
 cat ~/.bash_profile
+
+# Alternatively:
+
+nano ~/.bash_profile
+
+# Then paste into the editor
+
+export LC_ALL=en_US.UTF-8
+
+# Then Cntrl-X, then Y, then Enter.
