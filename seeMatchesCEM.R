@@ -10,9 +10,6 @@
 #
 # Feb 20, 2023
 
-# Observation IDs are taken randomly, so set seed
-set.seed(123)
-
 library(dplyr)
 library(randomNames)
 library(Amelia)
@@ -163,15 +160,23 @@ seeMatchesCEM(match_data = matched_data,
               source_data = LeLonde,
               ID = "name",
               all = FALSE,
-              n_sample = 10)
+              n_sample = 10) |> 
+  print()
 
-# Output: [1] "Jacqueline Worrell & Maa'iz al-Sarah" [2] "Amanda Kupinski &
-# Maurica Shaver & Mushtaaqa al-Hussein" [3] "David Mix & Qourtney Thompkins"
-# [4] "Cristina Monge & Isidro Silva" [5] "Andreas Cooper & Sahar el-Hosein" [6]
-# "Charles Scheifele & Kendall Burton & Rochelle Trujillo" [7] "Isabel Cirbo &
-# Jeanette Rico Ruiz & Timothy Smith" [8] "Alan Taylor & Deljerro Samoy & Salwa
-# el-Sheikh" [9] "Angie Hernandez & Blongshia Yuan & Caitlynn Yellowhorse &
-# Saige Murry" [10] "Kevin Myong & Tina Oh"
+# Output:
+
+# [1] "Adrianna Compos & Annnees el-Mustafa & Eden Lockett & Jacob Sobon &
+# Michael Heideman"
+# [2] "Avery Parks & Brandon Liddell & Dakota Maez & Elizabeth Abdella & Heather
+# Parsons"
+# [3] "Flint Tutag & Monica Burd"                                                           
+# [4] "Aaron Thompson & Lacey Gorrono & Nikola Kim"                                         
+# [5] "Melissa Pham & Robert Morquecho & Vy Deck & Ya'qoob al-Khawaja"                      
+# [6] "Abraham Dejesus Morales & Rayyaan al-Baten & Samantha Washington"                    
+# [7] "Haleema al-Salloum & Jayden Snowhawk"                                                
+# [8] "Michaela Cooper & Shafaaa al-Shaban"                                                 
+# [9] "Alvin Patterson & Cody Anderson"                                                     
+# [10] "Breanna Reynolds & Levi Gutierrez-Solis"
 
 # Sample of matches using imputed data
 seeMatchesCEM(match_data = matched_list,
@@ -182,14 +187,19 @@ seeMatchesCEM(match_data = matched_list,
   print()
 
 # Output:
-# [1] "Denzel Brooks & Lance Watchman" [2] "Emily Kim & Gina Brett & Musfira
-# al-Bashir & Shaaheen el-Mowad & Sierra Graham" [3] "Emily Kim & Gina Brett &
-# Shaaheen el-Mowad & Sierra Graham" [4] "Brooklyn Houcks & Chad Cisneros &
-# Fabian Trevizo Perez & Joaquin Mendoza & Matthew Johnson" [5] "Dominika Ward &
-# Kevin Espinoza & Matthew Torres" [6] "Holly Lapaz & Joshua Ponce & Seth Vang"
-# [7] "Jacqueline Worrell & Maa'iz al-Sarah" [8] "Cristina Monge & Deekota Qui &
-# Isidro Silva" [9] "Michael Carey & Muslim al-Ayoob" [10] "Hanlu Prasad & Sarah
-# Dick"
+# [1] "Chelsea Ducklow & Nazeeha al-Bacho & Richard Ortega & Shahla al-Fares &
+# Shannon Larson"
+# [2] "Avery Parks & Brandon Liddell & Dakota Maez & Destiny Geshick & Elizabeth
+# Abdella & Heather Parsons"
+# [3] "Anthony Debus & Auston Colaizzi & Zainab el-Wahba"                                                                                    
+# [4] "Alexander Martinez & Christopher Butcher & Domonique Soto-Rodriguez"                                                                  
+# [5] "Aayid al-Mahmood & Brianna Celestino & Marlenny Vogel & Nico Burnsed"                                                                 
+# [6] "Alysia Price & Natsima Heideman"                                                                                                      
+# [7] "Brandon Vega & Cody Reed & Craig Finney & Mattewos Johnson & Nicholas
+# Huntley & Raakaan el-Jabara & Saaliha el-Sharaf & Xavier Powell"
+# [8] "Daniel Zerna & Raymond Padilla & Selina Gonzalez-Carrazco"                                                                            
+# [9] "Abraham Dejesus Morales & Rayyaan al-Baten & Samantha Washington"                                                                     
+# [10] "Jocelynn Taylor & Sabeeka al-Abdulla"        
 
 # All matches using imputed data
 if (FALSE){
@@ -201,7 +211,6 @@ if (FALSE){
 }
 
 # References: 
-#
 # Daniel Ho, Kosuke Imai, Gary King, and Elizabeth Stuart (2007).
 # Matching as Nonparametric Preprocessing for Reducing Model Dependence in
 # Parametric Causal Inference. Political Analysis 15(3): 199-236.

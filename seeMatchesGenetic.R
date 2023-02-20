@@ -9,10 +9,6 @@
 #
 # Feb 20, 2023
 
-
-# Observation IDs are taken randomly, so set seed
-set.seed(123)
-
 library(dplyr)
 library(randomNames)
 library(Amelia)
