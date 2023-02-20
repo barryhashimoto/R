@@ -23,16 +23,18 @@ see_matches_cem <- function(match_data,
                             n_sample = NULL) {
   
   # match_data: a data frame or list of data frames (i.e. imputed and matched
-  # data frames) produced by matchit().
-    
+  # data frames) that must have been produced by matchit() using 'cem' method.
+  
   # source_data: the source data frame processed by matching and possibly also
-  # imputation.
+  # by imputation. User passes this in so the ID column may be merged.
     
-  # ID: a string identifying the observations. 
+  # ID: the string name of the vector in `source_data` identifying the
+  # observations that will be displayed by the function's return value, the list
+  # of matched units.
     
-  # all: returns all matches if TRUE. 
+  # all: returns every set of matches if TRUE. 
     
-  # n_sample: number of matches to sample if all = FALSE.
+  # n_sample: number of matches to sample for returning, if all = FALSE.
   
   require(MatchIt)
   require(Amelia)
