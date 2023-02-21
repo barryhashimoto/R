@@ -61,7 +61,11 @@ seeMatchesCEM <- function(match_data,
     # Merge IDs from source to matched
     dfs[[ID]] <- source_data[[ID]]
     
-    # Built nested list wherein each element holds the matched names as strings
+    # Build a nested list where each element holds the matched names as strings.
+    # Aggregate dfs data frame by subclass. Concatenate IDs for each subclass
+    # into a single string. Result is a data frame with two columns: the
+    # subclass and the concatenated string of IDs. Extract the second column as
+    # a listm and sort each list element alphabetically.
     matches[[i]] <-
       aggregate(
         dfs[[ID]],

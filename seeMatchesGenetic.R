@@ -51,7 +51,7 @@ seeMatchesGenetic <- function(match_data,
     model_data <- match_data[[i]]$model$data
   	match_matrix <- match_data[[i]]$match.matrix
   	
-  	# Save a dictionary of matched rownames and ID names
+  	# Create a dictionary of matched rownames and ID names
   	nameKey <- 
   	  cbind(
   	    rownames(model_data), 
@@ -59,7 +59,7 @@ seeMatchesGenetic <- function(match_data,
   	    ) |> 
   	  as.data.frame(stringsAsFactors = FALSE)
 	
-  	# Save a dictionary of matched rownames
+  	# Create a dictionary of matched rownames
   	matchMat <- 
   	  cbind(
   	    rownames(match_matrix), 
@@ -67,11 +67,20 @@ seeMatchesGenetic <- function(match_data,
   	    ) |> 
   	  as.data.frame(stringsAsFactors = FALSE)
   	
-  	# Use the empty bracket trick to format the above dictionary so that it now
-  	# displays the matched ID names
+  	# Use the empty-index trick to replace rownames in matchMat with their
+  	# corresponding ID names from nameKey. The unlist function is used to convert
+  	# the matchMat data frame into a vector for efficient matching. The base
+  	# match function is used to find the indices of the matching rownames between
+  	# matchMat and nameKey$V1. And nameKey$V2 is used to replace the values in
+  	# matchMat with the corresponding ID names.
   	matchMat[] <- nameKey$V2[match(unlist(matchMat), nameKey$V1)]
   	
-  	# Format and sort all the matches into a vector of strings
+  	# Format and sort all the matches into a vector of strings. Split the
+  	# matchMat data frame into a list of data frames, with one data frame for
+  	# each row Remove any columns with missing values from each data frame.
+  	# Convert each data frame to a single string by concatenating the non-NA
+  	# values separated by "&". Combine the strings into a single vector. Then
+  	# sort the vector alphabetically.
   	matches[[i]] <- split(matchMat, f = seq(nrow(matchMat))) |> 
   	  lapply(function(x) x[, !is.na(x)]) |> 
   	  lapply(function(x) paste(x, collapse = " & ")) |>
